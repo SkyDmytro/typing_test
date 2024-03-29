@@ -7,9 +7,9 @@ export const Header = () => {
         <h1 className='title'>
             Shiro's typing test
         </h1>
-        <p className='main-text'>
-            open-source typing test
-        </p>
+        <h3 className='main-text'>
+            Typing game
+        </h3>
     </div>
   )
 }
