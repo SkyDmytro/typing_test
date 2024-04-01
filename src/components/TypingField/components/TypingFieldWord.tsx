@@ -5,22 +5,23 @@ interface TypingFieldWordProps{
   isActive:boolean,
   word:string,
   activeLetter:number
+  idx:number
 }
 
-const Letter =({letter,isCorrect}:{letter:string,isCorrect:"correct"|"incorrect"|"none"})=> {
+const Letter =({letter,indexes}:{indexes:string,letter:string,isCorrect:"correct"|"incorrect"|"none"})=> {
   return(
-  <div className={classNames(isCorrect)}>
+  <span className={classNames("letter",indexes)}>
   {letter}
-  </div>)
+  </span>)
 }
 
-export const TypingFieldWord = ({isActive,word}:TypingFieldWordProps) => {
+export const TypingFieldWord = ({isActive,word,idx}:TypingFieldWordProps) => {
   const splitedWord = word.split("")
 
   return (
     <div className={classNames(isActive,"word")}>
-      {splitedWord.map((letter,idx)=>{
-        return <Letter letter={letter} key={idx} isCorrect={"none"}/>
+      {splitedWord.map((letter,idx2)=>{
+        return <Letter letter={letter} key={idx2} isCorrect={"none"} indexes={`${idx}`+`${idx2}`} />
       })}
     </div>
   )
