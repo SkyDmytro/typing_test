@@ -1,0 +1,36 @@
+.field{
+  max-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .words-container{
+    font-size: 24px;
+    width: 70%;
+    color: grey;
+    letter-spacing: 0;
+    span{
+      padding: 0;
+      letter-spacing: 0;
+      box-sizing: border-box;
+      &.caret-right{
+        border-left: 1px solid transparent;
+        border-right: 1px solid orange;
+      }
+      &.correct{
+        color: white;
+      }
+      &.incorrect{
+        color: red;
+        
+      }
+    }
+  }
+  .input{
+    position: absolute;
+  
+    height: 100px;
+    width: 80%;
+    opacity: 0;
+  }
+ 
+}
