@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
 import { ResultType } from "../../../types/results";
 
-
-export const CountDown = ({ time, start,setResults }: { time: number; start: boolean,setResults: React.Dispatch<React.SetStateAction<ResultType>>}) => {
+export const CountDown = ({
+  time,
+  start,
+  setResults,
+}: {
+  time: number;
+  start: boolean;
+  setResults: React.Dispatch<React.SetStateAction<ResultType>>;
+}) => {
   const [timer, setTimer] = useState(time);
 
   useEffect(() => {
-    let timerID:number;
+    let timerID: number;
 
-    if (start && timer > 0) { 
+    if (start && timer > 0) {
       timerID = setInterval(() => tick(), 1000);
     }
 
@@ -16,10 +23,14 @@ export const CountDown = ({ time, start,setResults }: { time: number; start: boo
       clearInterval(timerID);
     };
   }, [start, timer]);
+  
+  useEffect(() => {
+    setTimer(time);
+  }, [time]);
 
   const tick = () => {
-    if(timer===1){
-      setResults((prevResults)=>({...prevResults,isFinished:true}))
+    if (timer === 1) {
+      setResults((prevResults) => ({ ...prevResults, isFinished: true }));
     }
     setTimer((prevTimer) => prevTimer - 1);
   };

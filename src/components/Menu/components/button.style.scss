@@ -1,0 +1,29 @@
+.button {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  &:focus{
+    border: 0;
+    transition: none;
+    outline: none;
+  }
+  &:hover {
+    .text {
+      transform: scale(1.2);
+      color: orange;
+    }
+  }
+  .text {
+    &.active {
+      color: orange;
+    }
+  }
+  .icon {
+    width: 100%;
+    height: 100%;
+    fill: orange;
+  }
+}

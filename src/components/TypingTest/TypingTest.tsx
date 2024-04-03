@@ -4,6 +4,7 @@ import { Stats } from "../Stats/Stats";
 import { TypingField } from "../TypingField/TypingField";
 import "./typingTest.style.scss";
 import { ResultType } from "../../types/results";
+import { Menu } from "../Menu/Menu";
  
 export type ResultsContextType = {
   results: ResultType;
@@ -18,7 +19,7 @@ export const TypingTest = () => {
     correctChars: 0,
     incorrectChars: 0,
     wordsTyped: 0,
-    time: 15,
+    time: 30,
     isFinished: false,
   });
 
@@ -27,6 +28,7 @@ export const TypingTest = () => {
       <section className="main-section">
           <TypingField onStart={setCountDownStart} />
           <Stats start={countDownStart} time={results.time} />
+          <Menu/>
       </section>
     </ResultsContext.Provider>
   );
