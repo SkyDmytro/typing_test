@@ -1,0 +1,15 @@
+.stats-block{
+  color: orange;
+  width: 60%;
+  .words-per-minute{
+    font-size: 22px;
+    color: orange;
+    
+  }
+  .characters-statistic{
+    text-align: end;
+  }
+  .accuracy{
+    text-align: end;
+  }
+}

@@ -2,6 +2,7 @@ import { ReactNode, useContext, useEffect, useState } from "react";
 import "./typingField.style.scss";
 import { ResultsContext } from "../TypingTest/TypingTest";
 import { getAmountOfWords } from "../../utils/functions";
+import { Character } from "./components/Character";
 
 interface TypingFieldProps {
   onStart: (_: boolean) => void;
@@ -11,10 +12,10 @@ export const TypingField = ({ onStart }: TypingFieldProps) => {
   const [inputText, setInputText] = useState("");
   const { results, setResults } = useContext(ResultsContext);
 
-  let correctCharacters = 0,
-    incorrectCharacters = 0;
   const text =
     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut pariatur assumenda ex suscipit corrupti error ullam itaque deserunt. Recusandae earum maiores cumque id, itaque ea quae molestias temporibus error libero.";
+  const correctCharacters = inputText.split("").filter((char, idx) => char === text.charAt(idx)).length;
+  const incorrectCharacters = inputText.length - correctCharacters;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value.length === 1) {
@@ -24,13 +25,12 @@ export const TypingField = ({ onStart }: TypingFieldProps) => {
   };
 
   useEffect(() => {
-    const wordsCount = getAmountOfWords(inputText);
     if (results.isFinished) {
       setResults((prevResults) => ({
         ...prevResults,
         correctChars: correctCharacters,
         incorrectChars: incorrectCharacters,
-        wordsTyped: wordsCount,
+        wordsTyped: getAmountOfWords(inputText),
       }));
     }
   }, [results.isFinished]);
@@ -40,15 +40,9 @@ export const TypingField = ({ onStart }: TypingFieldProps) => {
     const otherText = text.slice(inputText.length, text.length);
     return (
       <>
-        {inputArray.map((character, idx) => {
-          if (character === text.charAt(idx)) {
-            correctCharacters++;
-            return <span className="correct">{text.charAt(idx)}</span>;
-          } else {
-            incorrectCharacters++;
-            return <span className="incorrect">{text.charAt(idx)}</span>;
-          }
-        })}
+        {inputArray.map((character, idx) => (
+          <Character key={idx} character={character} isCorrect={character === text.charAt(idx)} />
+        ))}
         <span className="caret-right"></span>
         {otherText}
       </>
@@ -59,7 +53,7 @@ export const TypingField = ({ onStart }: TypingFieldProps) => {
     <>
       <div className="field">
         <div className="words-container">{getStyledWords()}</div>
-        <input className="input" onChange={handleInputChange} autoFocus />
+        <input className="input" onChange={handleInputChange} autoFocus disabled={results.isFinished} />
       </div>
     </>
   );

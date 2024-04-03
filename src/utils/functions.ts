@@ -9,6 +9,6 @@ const getWordsPerMinute =(words:number,time:number):number=>{
 }
 
 const getAccuracy =(amountOfCorrectChars:number,amountOfIncorrectCharacters:number)=>{
-  return amountOfCorrectChars/(amountOfCorrectChars+amountOfIncorrectCharacters) *100
+  return Math.floor(amountOfCorrectChars/(amountOfCorrectChars+amountOfIncorrectCharacters) *100)
 }
 export {getAmountOfWords, getWordsPerMinute,getAccuracy}

@@ -25,8 +25,8 @@ export const TypingTest = () => {
   return (
     <ResultsContext.Provider value={{ results, setResults }}>
       <section className="main-section">
-        <TypingField onStart={setCountDownStart} />
-        <Stats start={countDownStart} time={results.time} />
+          <TypingField onStart={setCountDownStart} />
+          <Stats start={countDownStart} time={results.time} />
       </section>
     </ResultsContext.Provider>
   );
