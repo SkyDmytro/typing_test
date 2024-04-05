@@ -12,7 +12,6 @@ interface StatsProps{
 export const Stats = ({time,start}:StatsProps) => {
   const {results, setResults} = useContext(ResultsContext)
 
-
   return (
     <div className='stats-container'>
       <CountDown setResults={setResults} start={start} time={time}/>
