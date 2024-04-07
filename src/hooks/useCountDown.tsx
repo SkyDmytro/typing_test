@@ -1,5 +1,5 @@
-import { ResultType } from "@localTypes/results";
 import React, { useEffect, useState } from "react";
+import { ResultType } from "../types/results";
 
 export const useCountDown = ({
   start,
@@ -35,5 +35,5 @@ export const useCountDown = ({
     setTimer((prevTimer) => prevTimer - 1);
   };
 
-  return {timer}
+  return { timer };
 };

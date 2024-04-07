@@ -39,6 +39,7 @@ export const TypingField = ({ onStart }: TypingFieldProps) => {
       <div className="field">
         <div className="words-container">{getStyledWords(inputText,text)}</div>
         <input
+          value={inputText}
           className="input"
           onChange={handleInputChange}
           autoFocus

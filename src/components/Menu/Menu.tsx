@@ -5,8 +5,8 @@ import { MenuBlock } from "./components/MenuBlock/MenuBlock"
 
 
 
-export const Menu = () => {
-  const menuButtons:menuButton[] = useGetMenuButtons()
+export const Menu = ({onReset}:{onReset:(_:boolean)=>void}) => {
+  const menuButtons:menuButton[] = useGetMenuButtons(onReset)
   return (
    <MenuBlock menuButtons={menuButtons} />
   )

@@ -14,7 +14,7 @@ export const Stats = ({time,start}:StatsProps) => {
 
   return (
     <div className='stats-container'>
-      <CountDown setResults={setResults} start={start} time={time}/>
+      <CountDown setResults={setResults} start={start} time={time} />
       {
         results.isFinished &&
         <StatsBlock results={results} />

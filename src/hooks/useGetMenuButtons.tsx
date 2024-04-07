@@ -1,24 +1,21 @@
 import { useContext } from "react";
-import { ResultsContext } from "../components/TypingTest/TypingTest";
+import { IdContextForRemount, ResultsContext } from "../components/TypingTest/TypingTest";
 import resetIcon from "../assets/reset-svgrepo-com.svg";
 import { menuButton } from "../types/menuTypes";
 
-export const useGetMenuButtons = (): menuButton[] => {
+export const useGetMenuButtons = (onReset:(_:boolean)=>void): menuButton[] => {
   const { results, setResults } = useContext(ResultsContext);
   const { time } = results;
+  const {setTypingFieldId,setcountDownId} = useContext(IdContextForRemount)
 
   const handleTimeClick = (time: number) => () => {
     setResults((prevResults) => ({ ...prevResults, time }));
   };
 
   const handleReset = () => {
-    setResults((prevResults) => ({
-      ...prevResults,
-      correctChars: 0,
-      incorrectChars: 0,
-      isFinished: false,
-      wordsTyped: 0,
-    }));
+    setTypingFieldId(Math.random()*100)
+    setcountDownId(Math.random()*100)
+    onReset(false)
   };
 
   return [
