@@ -1,21 +1,26 @@
 import { useContext } from "react";
-import { IdContextForRemount, ResultsContext } from "../components/TypingTest/TypingTest";
+import {
+  IdContextForRemount,
+  ResultsContext,
+} from "../components/TypingTest/TypingTest";
 import resetIcon from "../assets/reset-svgrepo-com.svg";
 import { menuButton } from "../types/menuTypes";
 
-export const useGetMenuButtons = (onReset:(_:boolean)=>void): menuButton[] => {
+export const useGetMenuButtons = (
+  onReset: (_: boolean) => void,
+): menuButton[] => {
   const { results, setResults } = useContext(ResultsContext);
   const { time } = results;
-  const {setTypingFieldId,setcountDownId} = useContext(IdContextForRemount)
+  const { setTypingFieldId, setcountDownId } = useContext(IdContextForRemount);
 
   const handleTimeClick = (time: number) => () => {
     setResults((prevResults) => ({ ...prevResults, time }));
   };
 
   const handleReset = () => {
-    setTypingFieldId(Math.random()*100)
-    setcountDownId(Math.random()*100)
-    onReset(false)
+    setTypingFieldId(Math.random() * 100);
+    setcountDownId(Math.random() * 100);
+    onReset(false);
   };
 
   return [
@@ -49,6 +54,5 @@ export const useGetMenuButtons = (onReset:(_:boolean)=>void): menuButton[] => {
       isActive: time === 60,
       onClick: handleTimeClick(60),
     },
-    
   ];
 };

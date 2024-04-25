@@ -1,6 +1,6 @@
-export type menuButton={
-  text?:string,
-  icon?:string,
-  isActive:boolean,
-  onClick:()=>void
-}
+export type menuButton = {
+  text?: string;
+  icon?: string;
+  isActive: boolean;
+  onClick: () => void;
+};
