@@ -1,23 +1,22 @@
-.footer{
-    position: fixed;
+.footer {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  .github {
     display: flex;
     justify-content: center;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    .github{
-        display: flex;
-        justify-content: center;
-        gap: 10px;
+    gap: 10px;
+  }
+  .idea {
+    .highlighted {
+      color: orange;
+      text-decoration: none;
     }
-    .idea{
-
-        .highlighted{
-            color: orange;
-            text-decoration: none;
-        }
-    }
+  }
 }
