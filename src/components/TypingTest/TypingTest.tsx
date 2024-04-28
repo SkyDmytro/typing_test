@@ -2,8 +2,10 @@ import { createContext, useState } from "react";
 
 import { ResultType } from "../../types/results";
 import { TypingField } from "../TypingField/TypingField";
-import { Stats } from "../Stats/Stats";
 import { Menu } from "../Menu/Menu";
+import { useGetRandomWords } from "../../hooks/useGetRandomWords";
+import { LanguageSelect } from "../LanguageSelect/LanguageSelect";
+import { Stats } from "../Stats/Stats";
 
 export type ResultsContextType = {
   results: ResultType;
@@ -15,11 +17,13 @@ export type IdContextForRemountType = {
   setTypingFieldId: React.Dispatch<React.SetStateAction<number>>;
   setcountDownId: React.Dispatch<React.SetStateAction<number>>;
 };
+export type currentLanguage = "EN" | "UA";
 
 export const ResultsContext = createContext({} as ResultsContextType);
 export const IdContextForRemount = createContext({} as IdContextForRemountType);
 
 export const TypingTest = () => {
+  const [currentLanguage, setCurrentLanguage] = useState<currentLanguage>("EN");
   const [countDownStart, setCountDownStart] = useState(false);
   const [typingFieldId, setTypingFieldId] = useState(1);
   const [countDownId, setcountDownId] = useState(2);
@@ -30,6 +34,7 @@ export const TypingTest = () => {
     time: 30,
     isFinished: false,
   });
+  const words = useGetRandomWords(currentLanguage);
 
   return (
     <ResultsContext.Provider value={{ results, setResults }}>
@@ -37,7 +42,11 @@ export const TypingTest = () => {
         value={{ typingFieldId, countDownId, setcountDownId, setTypingFieldId }}
       >
         <section className="main-section">
-          <TypingField onStart={setCountDownStart} key={typingFieldId} />
+          <LanguageSelect
+            currentLanguage={currentLanguage}
+            setCurrentLanguage={setCurrentLanguage}
+          />
+          <TypingField onStart={setCountDownStart} key={typingFieldId} words={words} />
           <Stats start={countDownStart} time={results.time} key={countDownId} />
           <Menu onReset={setCountDownStart} />
         </section>

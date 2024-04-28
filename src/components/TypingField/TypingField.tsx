@@ -10,17 +10,15 @@ import { useInput } from "../../hooks/useInput";
 
 interface TypingFieldProps {
   onStart: (_: boolean) => void;
+  words: string;
 }
 
-export const TypingField = ({ onStart }: TypingFieldProps) => {
+export const TypingField = ({ onStart, words }: TypingFieldProps) => {
   const { results, setResults } = useContext(ResultsContext);
   const { handleInputChange, inputText } = useInput(onStart);
 
-  const text =
-    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut pariatur assumenda ex suscipit corrupti error ullam itaque deserunt. Recusandae earum maiores cumque id, itaque ea quae molestias temporibus error libero.";
-
   const { correctCharacters, incorrectCharacters } =
-    getCorrectnIncorrectCharacters(inputText, text);
+    getCorrectnIncorrectCharacters(inputText, words);
 
   useEffect(() => {
     if (results.isFinished) {
@@ -36,7 +34,9 @@ export const TypingField = ({ onStart }: TypingFieldProps) => {
   return (
     <>
       <div className="field">
-        <div className="words-container">{getStyledWords(inputText, text)}</div>
+        <div className="words-container">
+          {getStyledWords(inputText, words)}
+        </div>
         <input
           value={inputText}
           className="input"
