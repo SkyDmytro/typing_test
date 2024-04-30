@@ -19,7 +19,7 @@ export const useGetRandomWords = (currentLanguage: currentLanguage) => {
   const currentWords =
     currentLanguage === "EN" ? englishWordsJSON : ukrainianWordsJSON;
 
-  while (result.length < 200) {
+  while (result.length < 50) {
     const newWord = getRandomWord(currentWords);
     if (result.length === 0) {
       result = newWord;

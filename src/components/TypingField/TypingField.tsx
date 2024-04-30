@@ -11,25 +11,45 @@ import { useInput } from "../../hooks/useInput";
 interface TypingFieldProps {
   onStart: (_: boolean) => void;
   words: string;
+  setResetKey: React.Dispatch<React.SetStateAction<Date>>;
 }
 
-export const TypingField = ({ onStart, words }: TypingFieldProps) => {
+export const TypingField = ({
+  onStart,
+  words,
+  setResetKey,
+}: TypingFieldProps) => {
   const { results, setResults } = useContext(ResultsContext);
-  const { handleInputChange, inputText } = useInput(onStart);
+  const { handleInputChange, inputText, resetInputText } = useInput(onStart);
 
   const { correctCharacters, incorrectCharacters } =
     getCorrectnIncorrectCharacters(inputText, words);
+
+  console.log(correctCharacters, incorrectCharacters);
 
   useEffect(() => {
     if (results.isFinished) {
       setResults((prevResults) => ({
         ...prevResults,
-        correctChars: correctCharacters,
-        incorrectChars: incorrectCharacters,
-        wordsTyped: getAmountOfWords(inputText),
+        correctChars: prevResults.correctChars + correctCharacters,
+        incorrectChars: prevResults.incorrectChars + incorrectCharacters,
+        wordsTyped: prevResults.wordsTyped + getAmountOfWords(inputText),
       }));
     }
   }, [results.isFinished]);
+
+  useEffect(() => {
+    if (inputText === words) {
+      setResetKey(new Date());
+      resetInputText();
+      setResults((prevResults) => ({
+        ...prevResults,
+        correctChars: prevResults.correctChars + correctCharacters,
+        incorrectChars: prevResults.incorrectChars + incorrectCharacters,
+        wordsTyped: prevResults.wordsTyped + getAmountOfWords(inputText),
+      }));
+    }
+  }, [inputText]);
 
   return (
     <>

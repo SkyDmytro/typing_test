@@ -8,6 +8,8 @@ export const useInput = (onStart: (_: boolean) => void) => {
     }
     setInputText(event.target.value);
   };
-
-  return { inputText, handleInputChange };
+  const resetInputText = () => {
+    setInputText("");
+  };
+  return { resetInputText, inputText, handleInputChange };
 };
