@@ -21,8 +21,14 @@ export const useGetRandomWords = (currentLanguage: currentLanguage) => {
 
   while (result.length < 200) {
     const newWord = getRandomWord(currentWords);
-    result = result + " " + newWord;
+    if (result.length === 0) {
+      result = newWord;
+    } else {
+      result = result + " " + newWord;
+    }
   }
+
+  console.log(result);
   return result;
 };
 

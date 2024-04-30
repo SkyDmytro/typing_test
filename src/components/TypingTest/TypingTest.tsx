@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 
 import { ResultType } from "../../types/results";
 import { TypingField } from "../TypingField/TypingField";
@@ -35,7 +35,7 @@ export const TypingTest = () => {
     isFinished: false,
   });
   const words = useGetRandomWords(currentLanguage);
-
+  const memoizedWords = useMemo(() => words, [currentLanguage]);
   return (
     <ResultsContext.Provider value={{ results, setResults }}>
       <IdContextForRemount.Provider
@@ -46,7 +46,11 @@ export const TypingTest = () => {
             currentLanguage={currentLanguage}
             setCurrentLanguage={setCurrentLanguage}
           />
-          <TypingField onStart={setCountDownStart} key={typingFieldId} words={words} />
+          <TypingField
+            onStart={setCountDownStart}
+            key={typingFieldId}
+            words={memoizedWords}
+          />
           <Stats start={countDownStart} time={results.time} key={countDownId} />
           <Menu onReset={setCountDownStart} />
         </section>
