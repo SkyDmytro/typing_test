@@ -34,8 +34,11 @@ export const TypingTest = () => {
     time: 30,
     isFinished: false,
   });
+  const [resetKey, setResetKey] = useState(new Date());
+
   const words = useGetRandomWords(currentLanguage);
-  const memoizedWords = useMemo(() => words, [currentLanguage]);
+  const memoizedWords = useMemo(() => words, [resetKey, currentLanguage]);
+
   return (
     <ResultsContext.Provider value={{ results, setResults }}>
       <IdContextForRemount.Provider
@@ -50,6 +53,7 @@ export const TypingTest = () => {
             onStart={setCountDownStart}
             key={typingFieldId}
             words={memoizedWords}
+            setResetKey={setResetKey}
           />
           <Stats start={countDownStart} time={results.time} key={countDownId} />
           <Menu onReset={setCountDownStart} />
