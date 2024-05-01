@@ -10,22 +10,22 @@ type Item = {
 type wordsTypeDictionary = {
   [key: string]: Item;
 };
-// type useGetRandomWordsProps ={
-//   currentLanguage:
-// }
-
-export const useGetRandomWords = (currentLanguage: currentLanguage) => {
+export const useGetRandomWords = (
+  currentLanguage: currentLanguage,
+  numberOfWords: number
+) => {
   let result = "";
   const currentWords =
     currentLanguage === "EN" ? englishWordsJSON : ukrainianWordsJSON;
-
-  while (result.length < 200) {
+  let wordCount = 0;
+  while (wordCount < numberOfWords) {
     const newWord = getRandomWord(currentWords);
     if (result.length === 0) {
       result = newWord;
     } else {
       result = result + " " + newWord;
     }
+    wordCount++;
   }
 
   console.log(result);

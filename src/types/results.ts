@@ -4,4 +4,5 @@ export type ResultType = {
   wordsTyped: number;
   time: number;
   isFinished: boolean;
+  words: number;
 };

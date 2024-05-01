@@ -25,8 +25,6 @@ export const TypingField = ({
   const { correctCharacters, incorrectCharacters } =
     getCorrectnIncorrectCharacters(inputText, words);
 
-  console.log(correctCharacters, incorrectCharacters);
-
   useEffect(() => {
     if (results.isFinished) {
       setResults((prevResults) => ({
@@ -51,6 +49,14 @@ export const TypingField = ({
     }
   }, [inputText]);
 
+  useEffect(() => {
+    if (
+      results.words === getAmountOfWords(inputText) &&
+      inputText[inputText.length - 1] === words[words.length - 1]
+    ) {
+      setResults((prevResults) => ({ ...prevResults, isFinished: true }));
+    }
+  }, [inputText]);
   return (
     <>
       <div className="field">

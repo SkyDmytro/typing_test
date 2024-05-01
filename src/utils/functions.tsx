@@ -6,23 +6,24 @@ const getAmountOfWords = (text: string): number => {
 };
 
 const getWordsPerMinute = (words: number, time: number): number => {
+  console.log(time);
   return (words / time) * 60;
 };
 
 const getAccuracy = (
   amountOfCorrectChars: number,
-  amountOfIncorrectCharacters: number,
+  amountOfIncorrectCharacters: number
 ) => {
   return Math.floor(
     (amountOfCorrectChars /
       (amountOfCorrectChars + amountOfIncorrectCharacters)) *
-      100,
+      100
   );
 };
 
 const getCorrectnIncorrectCharacters = (
   inputText: string,
-  correctText: string,
+  correctText: string
 ) => {
   const correctCharacters = inputText
     .split("")
