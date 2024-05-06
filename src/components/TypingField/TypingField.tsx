@@ -11,7 +11,7 @@ import { useInput } from "../../hooks/useInput";
 interface TypingFieldProps {
   onStart: (_: boolean) => void;
   words: string;
-  setResetKey: React.Dispatch<React.SetStateAction<Date>>;
+  setResetKey: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const TypingField = ({
@@ -40,7 +40,7 @@ export const TypingField = ({
 
   useEffect(() => {
     if (inputText === words) {
-      setResetKey(new Date());
+      setResetKey(new Date().getDate());
       resetInputText();
       setResults((prevResults) => ({
         ...prevResults,

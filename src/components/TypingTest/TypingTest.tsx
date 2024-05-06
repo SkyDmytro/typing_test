@@ -1,5 +1,5 @@
 import { createContext, useMemo, useState } from "react";
-
+import "./typingTest.style.scss";
 import { TypingField } from "../TypingField/TypingField";
 import { Menu } from "../Menu/Menu";
 import { useGetRandomWords } from "../../hooks/useGetRandomWords";
@@ -37,10 +37,13 @@ export const TypingTest = () => {
     wordsTyped: 0,
     isFinished: false,
   });
-  const [resetKey, setResetKey] = useState(new Date());
+  const [resetKey, setResetKey] = useState(new Date().getDate());
 
-  const words = useGetRandomWords(currentLanguage);
-  const memoizedWords = useMemo(() => words, [resetKey, currentLanguage]);
+  const words = useGetRandomWords(currentLanguage, modesSpecificSettings.words);
+  const memoizedWords = useMemo(
+    () => words,
+    [resetKey, currentLanguage, modesSpecificSettings.words]
+  );
 
   return (
     <ResultsContext.Provider value={{ results, setResults }}>
@@ -63,17 +66,19 @@ export const TypingTest = () => {
                 currentLanguage={currentLanguage}
                 setCurrentLanguage={setCurrentLanguage}
               />
-              <TypingField
-                onStart={setCountDownStart}
-                key={typingFieldId}
-                words={memoizedWords}
-                setResetKey={setResetKey}
-              />
-              <Stats
-                start={countDownStart}
-                time={modesSpecificSettings.time}
-                key={countDownId}
-              />
+              <div key={resetKey}>
+                <TypingField
+                  onStart={setCountDownStart}
+                  key={typingFieldId}
+                  words={memoizedWords}
+                  setResetKey={setResetKey}
+                />
+                <Stats
+                  start={countDownStart}
+                  time={modesSpecificSettings.time}
+                  key={countDownId}
+                />
+              </div>
               <Menu onReset={setCountDownStart} />
             </section>
           </IdContextForRemount.Provider>
