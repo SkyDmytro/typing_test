@@ -10,13 +10,11 @@ interface StatsProps {
 }
 
 export const Stats = ({ time, start }: StatsProps) => {
-  const { results, setResults } = useContext(ResultsContext);
+  const { results } = useContext(ResultsContext);
   const { mode } = useContext(ModesContext);
   return (
     <div className="stats-container">
-      {mode === "time" && (
-        <CountDown setResults={setResults} start={start} time={time} />
-      )}
+      {mode === "time" && <CountDown start={start} time={time} />}
       {results.isFinished && <StatsBlock results={results} />}
     </div>
   );

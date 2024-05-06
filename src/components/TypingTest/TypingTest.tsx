@@ -25,8 +25,7 @@ export const ModesSpecificSettingsContext = createContext(
 export const TypingTest = () => {
   const [currentLanguage, setCurrentLanguage] = useState<currentLanguage>("EN");
   const [countDownStart, setCountDownStart] = useState(false);
-  const [typingFieldId, setTypingFieldId] = useState(1);
-  const [countDownId, setcountDownId] = useState(2);
+  const [idForRemount, setIdForRemount] = useState(2);
   const [currentMode, setCurrentMode] = useState<modesType>("time");
   const [modesSpecificSettings, setModesSpecificSettings] =
     useState<modesSpecificSettingsType>({ words: 50, time: 30 });
@@ -37,12 +36,11 @@ export const TypingTest = () => {
     wordsTyped: 0,
     isFinished: false,
   });
-  const [resetKey, setResetKey] = useState(new Date().getDate());
 
   const words = useGetRandomWords(currentLanguage, modesSpecificSettings.words);
   const memoizedWords = useMemo(
     () => words,
-    [resetKey, currentLanguage, modesSpecificSettings.words]
+    [idForRemount, currentLanguage, modesSpecificSettings.words]
   );
 
   return (
@@ -55,10 +53,8 @@ export const TypingTest = () => {
         >
           <IdContextForRemount.Provider
             value={{
-              typingFieldId,
-              countDownId,
-              setcountDownId,
-              setTypingFieldId,
+              idForRemount,
+              setIdForRemount,
             }}
           >
             <section className="main-section">
@@ -66,17 +62,14 @@ export const TypingTest = () => {
                 currentLanguage={currentLanguage}
                 setCurrentLanguage={setCurrentLanguage}
               />
-              <div key={resetKey}>
+              <div key={idForRemount}>
                 <TypingField
                   onStart={setCountDownStart}
-                  key={typingFieldId}
                   words={memoizedWords}
-                  setResetKey={setResetKey}
                 />
                 <Stats
                   start={countDownStart}
                   time={modesSpecificSettings.time}
-                  key={countDownId}
                 />
               </div>
               <Menu onReset={setCountDownStart} />
