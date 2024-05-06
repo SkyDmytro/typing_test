@@ -10,9 +10,6 @@ type Item = {
 type wordsTypeDictionary = {
   [key: string]: Item;
 };
-// type useGetRandomWordsProps ={
-//   currentLanguage:
-// }
 
 export const useGetRandomWords = (currentLanguage: currentLanguage) => {
   let result = "";
