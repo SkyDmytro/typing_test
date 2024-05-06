@@ -7,6 +7,7 @@ import {
 import resetIcon from "../assets/reset-svgrepo-com.svg";
 import { menuButton } from "../types/menuTypes";
 import { modesType } from "../types/contextTypes";
+import { useResults } from "./useResult";
 
 export const useGetMenuButtons = (
   onReset: (_: boolean) => void
@@ -16,15 +17,14 @@ export const useGetMenuButtons = (
   );
   const { mode, setMode } = useContext(ModesContext);
   const { words, time } = modesSpecificSettings;
-  const { setTypingFieldId, setcountDownId } = useContext(IdContextForRemount);
-
+  const { setIdForRemount } = useContext(IdContextForRemount);
   const handleTimeClick = (time: number) => () => {
     setModesSpecificSettings((prevState) => ({ ...prevState, time }));
   };
-
+  const { reset } = useResults();
   const handleReset = () => {
-    setTypingFieldId(Math.random() * 100);
-    setcountDownId(Math.random() * 100);
+    setIdForRemount(new Date().getMilliseconds());
+    reset();
     onReset(false);
   };
 

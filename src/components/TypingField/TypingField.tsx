@@ -1,53 +1,47 @@
 import { useContext, useEffect } from "react";
 import "./typingField.style.scss";
-import { ResultsContext } from "../TypingTest/TypingTest";
+import { IdContextForRemount, ResultsContext } from "../TypingTest/TypingTest";
 import {
   getAmountOfWords,
   getCorrectnIncorrectCharacters,
   getStyledWords,
 } from "../../utils/functions";
 import { useInput } from "../../hooks/useInput";
+import { useResults } from "../../hooks/useResult";
 
 interface TypingFieldProps {
   onStart: (_: boolean) => void;
   words: string;
-  setResetKey: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const TypingField = ({
-  onStart,
-  words,
-  setResetKey,
-}: TypingFieldProps) => {
-  const { results, setResults } = useContext(ResultsContext);
+export const TypingField = ({ onStart, words }: TypingFieldProps) => {
+  const { results } = useContext(ResultsContext);
   const { handleInputChange, inputText, resetInputText } = useInput(onStart);
-
+  const { setIdForRemount } = useContext(IdContextForRemount);
   const { correctCharacters, incorrectCharacters } =
     getCorrectnIncorrectCharacters(inputText, words);
-
+  const { modify } = useResults();
   console.log(correctCharacters, incorrectCharacters);
 
   useEffect(() => {
     if (results.isFinished) {
-      setResults((prevResults) => ({
-        ...prevResults,
-        correctChars: prevResults.correctChars + correctCharacters,
-        incorrectChars: prevResults.incorrectChars + incorrectCharacters,
-        wordsTyped: prevResults.wordsTyped + getAmountOfWords(inputText),
-      }));
+      modify(
+        correctCharacters,
+        incorrectCharacters,
+        getAmountOfWords(inputText)
+      );
     }
   }, [results.isFinished]);
 
   useEffect(() => {
     if (inputText === words) {
-      setResetKey(new Date().getDate());
       resetInputText();
-      setResults((prevResults) => ({
-        ...prevResults,
-        correctChars: prevResults.correctChars + correctCharacters,
-        incorrectChars: prevResults.incorrectChars + incorrectCharacters,
-        wordsTyped: prevResults.wordsTyped + getAmountOfWords(inputText),
-      }));
+      setIdForRemount(new Date().getMilliseconds());
+      modify(
+        correctCharacters,
+        incorrectCharacters,
+        getAmountOfWords(inputText)
+      );
     }
   }, [inputText]);
 

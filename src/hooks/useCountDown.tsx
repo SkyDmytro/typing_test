@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { ResultType } from "../types/results";
+import { useEffect, useState } from "react";
+import { useResults } from "./useResult";
 
 export const useCountDown = ({
   start,
   time,
-  setResults,
 }: {
   time: number;
   start: boolean;
-  setResults: React.Dispatch<React.SetStateAction<ResultType>>;
 }) => {
   const [timer, setTimer] = useState(time);
-
+  const { finish } = useResults();
   useEffect(() => {
     let timerID: number;
 
@@ -30,7 +28,7 @@ export const useCountDown = ({
 
   const tick = () => {
     if (timer === 1) {
-      setResults((prevResults) => ({ ...prevResults, isFinished: true }));
+      finish();
     }
     setTimer((prevTimer) => prevTimer - 1);
   };

@@ -6,10 +6,8 @@ export type ResultsContextType = {
   setResults: React.Dispatch<React.SetStateAction<ResultType>>;
 };
 export type IdContextForRemountType = {
-  typingFieldId: number;
-  countDownId: number;
-  setTypingFieldId: React.Dispatch<React.SetStateAction<number>>;
-  setcountDownId: React.Dispatch<React.SetStateAction<number>>;
+  idForRemount: number;
+  setIdForRemount: React.Dispatch<React.SetStateAction<number>>;
 };
 export type modesContextType = {
   mode: modesType;

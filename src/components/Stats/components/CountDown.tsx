@@ -1,16 +1,13 @@
 import { useCountDown } from "../../../hooks/useCountDown";
-import { ResultType } from "../../../types/results";
 
 export const CountDown = ({
   time,
   start,
-  setResults,
 }: {
   time: number;
   start: boolean;
-  setResults: React.Dispatch<React.SetStateAction<ResultType>>;
 }) => {
-  const { timer } = useCountDown({ time, start, setResults });
+  const { timer } = useCountDown({ time, start });
 
   return (
     <div className="wrapper">
