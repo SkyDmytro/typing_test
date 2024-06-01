@@ -1,6 +1,11 @@
 import { useContext, useEffect } from "react";
 import "./typingField.style.scss";
-import { IdContextForRemount, ResultsContext } from "../TypingTest/TypingTest";
+import {
+  IdContextForRemount,
+  ModesContext,
+  ModesSpecificSettingsContext,
+  ResultsContext,
+} from "../TypingTest/TypingTest";
 import {
   getAmountOfWords,
   getCorrectnIncorrectCharacters,
@@ -20,8 +25,9 @@ export const TypingField = ({ onStart, words }: TypingFieldProps) => {
   const { setIdForRemount } = useContext(IdContextForRemount);
   const { correctCharacters, incorrectCharacters } =
     getCorrectnIncorrectCharacters(inputText, words);
-  const { modify } = useResults();
-  console.log(correctCharacters, incorrectCharacters);
+  const { modify, finish } = useResults();
+  const { mode } = useContext(ModesContext);
+  const { modesSpecificSettings } = useContext(ModesSpecificSettingsContext);
 
   useEffect(() => {
     if (results.isFinished) {
@@ -34,14 +40,22 @@ export const TypingField = ({ onStart, words }: TypingFieldProps) => {
   }, [results.isFinished]);
 
   useEffect(() => {
-    if (inputText === words) {
-      resetInputText();
-      setIdForRemount(new Date().getMilliseconds());
-      modify(
-        correctCharacters,
-        incorrectCharacters,
-        getAmountOfWords(inputText)
-      );
+    console.log(inputText.length, words.length);
+    if (inputText.length === words.length) {
+      if (
+        mode === "words" &&
+        modesSpecificSettings.words === inputText.split(" ").length
+      ) {
+        finish();
+      } else {
+        resetInputText();
+        setIdForRemount(new Date().getMilliseconds());
+        modify(
+          correctCharacters,
+          incorrectCharacters,
+          getAmountOfWords(inputText)
+        );
+      }
     }
   }, [inputText]);
 
