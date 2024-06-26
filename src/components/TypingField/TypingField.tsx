@@ -9,10 +9,10 @@ import {
 import {
   getAmountOfWords,
   getCorrectnIncorrectCharacters,
-  getStyledWords,
 } from "../../utils/functions";
 import { useInput } from "../../hooks/useInput";
 import { useResults } from "../../hooks/useResult";
+import InputComponent from "./components/InputComponent";
 
 interface TypingFieldProps {
   onStart: (_: boolean) => void;
@@ -62,16 +62,12 @@ export const TypingField = ({ onStart, words }: TypingFieldProps) => {
   return (
     <>
       <div className="field">
-        <div className="words-container">
-          {getStyledWords(inputText, words)}
-        </div>
-        <input
-          value={inputText}
-          className="input"
-          onChange={handleInputChange}
-          autoFocus
-          disabled={results.isFinished}
-        />
+        {InputComponent({
+          words: words,
+          inputText: inputText,
+          onChange: handleInputChange,
+          isDisabled: results.isFinished,
+        })}
       </div>
     </>
   );
