@@ -49,7 +49,9 @@ export const useGetRandomWords = (
   console.log(result);
   return result;
 };
-const getRandomWord = (words: wordsTypeDictionary) => {
-  const randNumber = Math.floor(Math.random() * Object.keys(words).length);
+export const getRandomWord = (words: wordsTypeDictionary) => {
+  const randNumber = Math.floor(
+    Math.random() * (Object.keys(words).length - 2) + 1
+  );
   return words[randNumber].val;
 };
