@@ -25,4 +25,8 @@ export type modesSpecificSettingsContextType = {
 export type modesSpecificSettingsType = {
   time: number;
   words: number;
+  defaultValues: {
+    time: number;
+    words: number;
+  };
 };

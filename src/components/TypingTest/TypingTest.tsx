@@ -28,7 +28,11 @@ export const TypingTest = () => {
   const [idForRemount, setIdForRemount] = useState(2);
   const [currentMode, setCurrentMode] = useState<modesType>("time");
   const [modesSpecificSettings, setModesSpecificSettings] =
-    useState<modesSpecificSettingsType>({ words: 50, time: 30 });
+    useState<modesSpecificSettingsType>({
+      words: 50,
+      time: 30,
+      defaultValues: { words: 50, time: 30 },
+    });
 
   const [results, setResults] = useState({
     correctChars: 0,
@@ -40,7 +44,12 @@ export const TypingTest = () => {
   const words = useGetRandomWords(currentLanguage, modesSpecificSettings.words);
   const memoizedWords = useMemo(
     () => words,
-    [idForRemount, currentLanguage, modesSpecificSettings.words]
+    [
+      idForRemount,
+      currentLanguage,
+      modesSpecificSettings.words,
+      modesSpecificSettings.time,
+    ]
   );
 
   return (
