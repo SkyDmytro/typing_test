@@ -27,7 +27,9 @@ export const TypingField = ({ onStart, words }: TypingFieldProps) => {
     getCorrectnIncorrectCharacters(inputText, words);
   const { modify, finish } = useResults();
   const { mode } = useContext(ModesContext);
-  const { modesSpecificSettings } = useContext(ModesSpecificSettingsContext);
+  const { modesSpecificSettings, setModesSpecificSettings } = useContext(
+    ModesSpecificSettingsContext
+  );
 
   useEffect(() => {
     if (results.isFinished) {
@@ -58,6 +60,16 @@ export const TypingField = ({ onStart, words }: TypingFieldProps) => {
       }
     }
   }, [inputText]);
+
+  useEffect(() => {
+    setModesSpecificSettings((prevState) => {
+      return {
+        ...prevState,
+        words: modesSpecificSettings.defaultValues.words,
+        time: modesSpecificSettings.defaultValues.time,
+      };
+    });
+  }, [mode]);
 
   return (
     <>
