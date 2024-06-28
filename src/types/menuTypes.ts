@@ -3,4 +3,5 @@ export type menuButton = {
   icon?: string;
   isActive: boolean;
   onClick: () => void;
+  tooltipText?: string;
 };

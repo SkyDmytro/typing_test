@@ -2,9 +2,16 @@ import classNames from "classnames";
 import "./button.style.scss";
 import { menuButton } from "../../../types/menuTypes";
 
-export const Button = ({ icon, text, isActive, onClick }: menuButton) => {
+export const Button = (
+  props: menuButton &
+    React.DetailedHTMLProps<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >
+) => {
+  const { icon, text, isActive, ...otherProps } = props;
   return (
-    <button className="button" onClick={onClick}>
+    <button className="button" {...otherProps}>
       {text && (
         <div className={classNames("text", isActive && "active")}>{text}</div>
       )}

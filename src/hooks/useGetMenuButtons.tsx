@@ -42,6 +42,7 @@ export const useGetMenuButtons = (
     ? [
         {
           text: "words",
+          tooltipText: "Words mode ",
           icon: "",
           isActive: true,
           onClick: handleChangeMode("words"),
@@ -54,36 +55,42 @@ export const useGetMenuButtons = (
         },
         {
           text: "time",
+          tooltipText: "Time mode",
           icon: "",
           isActive: false,
           onClick: handleChangeMode("time"),
         },
         {
           text: "",
+          tooltipText: "Restart the game",
           icon: resetIcon,
           isActive: true,
           onClick: handleReset,
         },
         {
           text: "10",
+          tooltipText: "10 words",
           icon: "",
           isActive: words === 10,
           onClick: handleWordClick(10),
         },
         {
           text: "30",
+          tooltipText: "30 words ",
           icon: "",
           isActive: words === 30,
           onClick: handleWordClick(30),
         },
         {
           text: "50",
+          tooltipText: "50 words",
           icon: "",
           isActive: words === 50,
           onClick: handleWordClick(50),
         },
         {
           text: "100",
+          tooltipText: "100 words",
           icon: "",
           isActive: words === 100,
           onClick: handleWordClick(100),
@@ -92,6 +99,7 @@ export const useGetMenuButtons = (
     : [
         {
           text: "words",
+          tooltipText: "Words mode",
           icon: "",
           isActive: false,
           onClick: handleChangeMode("words"),
@@ -104,36 +112,42 @@ export const useGetMenuButtons = (
         },
         {
           text: "time",
+          tooltipText: "Time mode",
           icon: "",
           isActive: true,
           onClick: handleChangeMode("time"),
         },
         {
           text: "",
+          tooltipText: "Restart the game",
           icon: resetIcon,
           isActive: true,
           onClick: handleReset,
         },
         {
           text: "15s",
+          tooltipText: "15 seconds",
           icon: "",
           isActive: time === 15,
           onClick: handleTimeClick(15),
         },
         {
           text: "30s",
+          tooltipText: "30 seconds ",
           icon: "",
           isActive: time === 30,
           onClick: handleTimeClick(30),
         },
         {
           text: "45s",
+          tooltipText: "45 seconds",
           icon: "",
           isActive: time === 45,
           onClick: handleTimeClick(45),
         },
         {
           text: "60s",
+          tooltipText: "60 seconds",
           icon: "",
           isActive: time === 60,
           onClick: handleTimeClick(60),

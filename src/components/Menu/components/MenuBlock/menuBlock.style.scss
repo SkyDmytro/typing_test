@@ -3,11 +3,15 @@
   display: flex;
   justify-content: center;
   .buttons {
+    position: relative;
     width: 60%;
     display: flex;
 
     justify-content: flex-end;
     padding-right: 100px;
     gap: 15px;
+    .button-with-tooltip {
+      position: relative;
+    }
   }
 }
