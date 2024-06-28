@@ -4,6 +4,4 @@ export type menuButton = {
   isActive: boolean;
   onClick: () => void;
   tooltipText?: string;
-  // onMouseOut?: () => void;
-  // onMouseOver?: () => void;
 };
