@@ -44,12 +44,7 @@ export const TypingTest = () => {
   const words = useGetRandomWords(currentLanguage, modesSpecificSettings.words);
   const memoizedWords = useMemo(
     () => words,
-    [
-      idForRemount,
-      currentLanguage,
-      modesSpecificSettings.words,
-      modesSpecificSettings.time,
-    ]
+    [idForRemount, currentLanguage, modesSpecificSettings.words]
   );
 
   return (
@@ -73,6 +68,7 @@ export const TypingTest = () => {
               />
               <div key={idForRemount}>
                 <TypingField
+                  hasStarted={countDownStart}
                   onStart={setCountDownStart}
                   words={memoizedWords}
                 />

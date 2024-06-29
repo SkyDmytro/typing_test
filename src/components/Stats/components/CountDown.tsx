@@ -1,4 +1,4 @@
-import { useCountDown } from "../../../hooks/useCountDown";
+import { useReverseCountDown } from "../../../hooks/useReverseCountDown";
 
 export const CountDown = ({
   time,
@@ -7,7 +7,7 @@ export const CountDown = ({
   time: number;
   start: boolean;
 }) => {
-  const { timer } = useCountDown({ time, start });
+  const { timer } = useReverseCountDown({ time, start });
 
   return (
     <div className="wrapper">
