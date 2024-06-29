@@ -13,13 +13,19 @@ import {
 import { useInput } from "../../hooks/useInput";
 import { useResults } from "../../hooks/useResult";
 import InputComponent from "./components/InputComponent";
+import { useCountDownForWordsMode } from "../../hooks/useCountDownForWordsMode";
 
 interface TypingFieldProps {
   onStart: (_: boolean) => void;
   words: string;
+  hasStarted: boolean;
 }
 
-export const TypingField = ({ onStart, words }: TypingFieldProps) => {
+export const TypingField = ({
+  onStart,
+  words,
+  hasStarted,
+}: TypingFieldProps) => {
   const { results } = useContext(ResultsContext);
   const { handleInputChange, inputText, resetInputText } = useInput(onStart);
   const { setIdForRemount } = useContext(IdContextForRemount);
@@ -30,9 +36,21 @@ export const TypingField = ({ onStart, words }: TypingFieldProps) => {
   const { modesSpecificSettings, setModesSpecificSettings } = useContext(
     ModesSpecificSettingsContext
   );
+  const { timer } = useCountDownForWordsMode({
+    start: hasStarted,
+    isFinished: results.isFinished,
+  });
+
+  console.log(timer);
 
   useEffect(() => {
     if (results.isFinished) {
+      if (mode === "words") {
+        setModesSpecificSettings((prevState) => ({
+          ...prevState,
+          time: timer,
+        }));
+      }
       modify(
         correctCharacters,
         incorrectCharacters,

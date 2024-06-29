@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { useResults } from "./useResult";
 
-export const useCountDown = ({
+export const useCountDownForWordsMode = ({
   start,
-  time,
+  isFinished,
 }: {
-  time: number;
   start: boolean;
+  isFinished: boolean;
 }) => {
-  const [timer, setTimer] = useState(time);
+  const [timer, setTimer] = useState(0);
   const { finish } = useResults();
   useEffect(() => {
     let timerID: number;
 
-    if (start && timer > 0) {
+    if (start && !isFinished) {
       timerID = setInterval(() => tick(), 1000);
     }
 
@@ -22,15 +22,10 @@ export const useCountDown = ({
     };
   }, [start, timer]);
 
-  useEffect(() => {
-    setTimer(time);
-  }, [time]);
+  useEffect(() => {});
 
   const tick = () => {
-    if (timer === 1) {
-      finish();
-    }
-    setTimer((prevTimer) => prevTimer - 1);
+    setTimer((prevTimer) => prevTimer + 1);
   };
 
   return { timer };
