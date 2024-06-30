@@ -18,10 +18,11 @@ export const useGetMenuButtons = (
   const { mode, setMode } = useContext(ModesContext);
   const { words, time } = modesSpecificSettings;
   const { setIdForRemount } = useContext(IdContextForRemount);
+  const { reset } = useResults();
+
   const handleTimeClick = (time: number) => () => {
     setModesSpecificSettings((prevState) => ({ ...prevState, time }));
   };
-  const { reset } = useResults();
   const handleReset = () => {
     setIdForRemount(new Date().getMilliseconds());
     reset();
