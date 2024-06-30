@@ -14,6 +14,8 @@ export const StatsBlock = ({ results }: { results: ResultType }) => {
           getWordsPerMinute(results.wordsTyped, modesSpecificSettings.time)}
       </div>
       <div className="characters-statistic">
+        Time:{" " + modesSpecificSettings.time}s
+        <br />
         Correct characters:{" " + results.correctChars}
         <br />
         Incorrect characters:{" " + results.incorrectChars}
