@@ -1,6 +1,7 @@
 .field {
   max-width: 100vw;
-  height: 300px;
+  min-height: 300px;
+  max-height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
