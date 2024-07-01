@@ -60,7 +60,6 @@ export const TypingField = ({
   }, [results.isFinished]);
 
   useEffect(() => {
-    console.log(inputText.length, words.length);
     if (inputText.length === words.length) {
       if (
         mode === "words" &&
