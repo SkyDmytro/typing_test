@@ -12,6 +12,7 @@ import {
   modesSpecificSettingsContextType,
   modesSpecificSettingsType,
   modesType,
+  themeType,
 } from "../../types/contextTypes";
 
 export type currentLanguage = "EN" | "UA";
@@ -27,6 +28,11 @@ export const TypingTest = () => {
   const [countDownStart, setCountDownStart] = useState(false);
   const [idForRemount, setIdForRemount] = useState(2);
   const [currentMode, setCurrentMode] = useState<modesType>("time");
+  const [currentTheme, setCurrentTheme] = useState<themeType>({
+    baseColor: "gray",
+    headerColor: "orange",
+    secondaryColor: "white",
+  });
   const [modesSpecificSettings, setModesSpecificSettings] =
     useState<modesSpecificSettingsType>({
       words: 50,
