@@ -1,7 +1,9 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useContext } from "react";
 import { currentLanguage } from "../TypingTest/TypingTest";
 import classNames from "classnames";
 import "./languageSelect.style.scss";
+import styled from "styled-components";
+import { ThemeContext } from "../../pages/MainPage/MainPage";
 
 type LanguageSelectProps = {
   currentLanguage: currentLanguage;
@@ -12,25 +14,31 @@ export const LanguageSelect = ({
   currentLanguage,
   setCurrentLanguage,
 }: LanguageSelectProps) => {
+  const { theme } = useContext(ThemeContext);
   const handleClick = (selectedLanguage: currentLanguage) => () => {
     setCurrentLanguage(selectedLanguage);
   };
-
+  const StyledDiv = styled.div`
+    color: ${theme.baseColor};
+    &.styled {
+      color: ${theme.activeColor};
+    }
+  `;
   return (
     <div className="language-select-main">
-      <div
+      <StyledDiv
         className={classNames("text", currentLanguage === "EN" ? "styled" : "")}
         onClick={handleClick("EN")}
       >
         EN
-      </div>
+      </StyledDiv>
       |
-      <div
+      <StyledDiv
         onClick={handleClick("UA")}
         className={classNames("text", currentLanguage === "UA" ? "styled" : "")}
       >
         UA
-      </div>
+      </StyledDiv>
     </div>
   );
 };

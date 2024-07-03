@@ -15,6 +15,22 @@ export type modesContextType = {
 };
 export type modesType = "words" | "time";
 
+export type themeContextType = {
+  setTheme: React.Dispatch<SetStateAction<themeType>>;
+  theme: themeType;
+};
+
+export type themeType = {
+  baseColor: string;
+  backgroundColor: string;
+  activeColor: string;
+  caretColor: string;
+  correctCharacter: string;
+  incorrectCharacter: string;
+  secondaryColor: string;
+  headerColor: string;
+};
+
 export type modesSpecificSettingsContextType = {
   modesSpecificSettings: modesSpecificSettingsType;
   setModesSpecificSettings: React.Dispatch<

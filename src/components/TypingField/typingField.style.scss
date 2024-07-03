@@ -9,7 +9,6 @@
   .words-container {
     font-size: 24px;
     width: 60%;
-    color: grey;
     letter-spacing: 0;
     span {
       padding: 0;
@@ -17,13 +16,11 @@
       box-sizing: border-box;
       &.caret-right {
         border-left: 1px solid transparent;
-        border-right: 1px solid orange;
+        border-right: 1px solid;
       }
       &.correct {
-        color: white;
       }
       &.incorrect {
-        color: red;
       }
     }
   }
@@ -39,7 +36,6 @@
     justify-content: center;
     align-items: center;
     background-color: transparent;
-    color: gray;
     width: 60%;
     height: 100%;
   }

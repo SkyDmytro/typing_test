@@ -22,6 +22,7 @@ export const ModesContext = createContext({} as modesContextType);
 export const ModesSpecificSettingsContext = createContext(
   {} as modesSpecificSettingsContextType
 );
+
 export const TypingTest = () => {
   const [currentLanguage, setCurrentLanguage] = useState<currentLanguage>("EN");
   const [countDownStart, setCountDownStart] = useState(false);

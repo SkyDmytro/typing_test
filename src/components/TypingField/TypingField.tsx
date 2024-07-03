@@ -14,6 +14,8 @@ import { useInput } from "../../hooks/useInput";
 import { useResults } from "../../hooks/useResult";
 import InputComponent from "./components/InputComponent";
 import { useCountDownForWordsMode } from "../../hooks/useCountDownForWordsMode";
+import styled from "styled-components";
+import { ThemeContext } from "../../pages/MainPage/MainPage";
 
 interface TypingFieldProps {
   onStart: (_: boolean) => void;
@@ -40,6 +42,27 @@ export const TypingField = ({
     start: hasStarted,
     isFinished: results.isFinished,
   });
+  const { theme } = useContext(ThemeContext);
+
+  const StyledField = styled.div`
+    .words-container {
+      color: ${theme.baseColor};
+      span {
+        &.caret-right {
+          border-right: 1px solid ${theme.caretColor};
+        }
+        &.correct {
+          color: ${theme.correctCharacter};
+        }
+        &.incorrect {
+          color: ${theme.incorrectCharacter};
+        }
+      }
+    }
+    .not-in-focus {
+      color: ${theme.baseColor};
+    }
+  `;
 
   console.log(timer);
 
@@ -90,14 +113,14 @@ export const TypingField = ({
 
   return (
     <>
-      <div className="field">
+      <StyledField className="field">
         {InputComponent({
           words: words,
           inputText: inputText,
           onChange: handleInputChange,
           isDisabled: results.isFinished,
         })}
-      </div>
+      </StyledField>
     </>
   );
 };
