@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles/tooltip.style.scss";
 import styled from "styled-components";
+import { ThemeContext } from "../../../pages/MainPage/MainPage";
 
 export const Tooltip = ({
   text,
@@ -9,13 +10,14 @@ export const Tooltip = ({
   text: string;
   className: string;
 }) => {
+  const { theme } = useContext(ThemeContext);
   const StyledDiv = styled.div`
     visibility: hidden;
     // display: none;
     position: absolute;
     top: 0px;
     text-wrap: nowrap;
-    color: white;
+    color: ${theme.secondaryColor};
     margin-top: 25px;
     left: 50%;
     left: 0px;

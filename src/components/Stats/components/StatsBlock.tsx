@@ -11,7 +11,7 @@ export const StatsBlock = ({ results }: { results: ResultType }) => {
   const { theme } = useContext(ThemeContext);
 
   const StyledDiv = styled.div`
-    color: ${theme.baseColor};
+    color: ${theme.activeColor};
   `;
   return (
     <StyledDiv className="stats-block">

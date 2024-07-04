@@ -7,7 +7,7 @@ const getAmountOfWords = (text: string): number => {
 
 const getWordsPerMinute = (words: number, time: number): number => {
   console.log("time:", time);
-  return (words / time) * 60;
+  return Math.floor((words / time) * 60);
 };
 
 const getAccuracy = (

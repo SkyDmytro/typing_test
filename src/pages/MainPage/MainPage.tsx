@@ -7,18 +7,25 @@ export const ThemeContext = createContext({} as themeContextType);
 
 export const MainPage = () => {
   const [currentTheme, setCurrentTheme] = useState<themeType>({
-    baseColor: "white",
+    baseColor: "gray",
     headerColor: "orange",
-    activeColor: "red",
-    secondaryColor: "purple",
-    backgroundColor: "yellow",
-    caretColor: "#FF5733",
-    correctCharacter: "#33F3FF",
-    incorrectCharacter: "#FF3333",
+    activeColor: "orange",
+    backgroundColor: "#242424",
+    caretColor: "orange",
+    correctCharacter: "white",
+    secondaryColor: "white",
+    incorrectCharacter: "red",
   });
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: currentTheme.backgroundColor,
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <ThemeContext.Provider
         value={{ theme: currentTheme, setTheme: setCurrentTheme }}
       >
