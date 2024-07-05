@@ -13,6 +13,7 @@ import {
   modesSpecificSettingsType,
   modesType,
 } from "../../types/contextTypes";
+import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
 
 export type currentLanguage = "EN" | "UA";
 
@@ -79,6 +80,7 @@ export const TypingTest = () => {
                 />
               </div>
               <Menu onReset={setCountDownStart} />
+              <ThemeSwitcher />
             </section>
           </IdContextForRemount.Provider>
         </ModesContext.Provider>
