@@ -3,6 +3,8 @@ import { CountDown } from "./components/CountDown";
 import { StatsBlock } from "./components/StatsBlock";
 import { ModesContext, ResultsContext } from "../TypingTest/TypingTest";
 import "./components/styles/stats.style.scss";
+import { ThemeContext } from "../../pages/MainPage/MainPage";
+import styled from "styled-components";
 
 interface StatsProps {
   time: number;
@@ -12,10 +14,14 @@ interface StatsProps {
 export const Stats = ({ time, start }: StatsProps) => {
   const { results } = useContext(ResultsContext);
   const { mode } = useContext(ModesContext);
+  const { theme } = useContext(ThemeContext);
+  const StyledContainer = styled.div`
+    color: ${theme.secondaryColor};
+  `;
   return (
-    <div className="stats-container">
+    <StyledContainer className="stats-container">
       {mode === "time" && <CountDown start={start} time={time} />}
       {results.isFinished && <StatsBlock results={results} />}
-    </div>
+    </StyledContainer>
   );
 };

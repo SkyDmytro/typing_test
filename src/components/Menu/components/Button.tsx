@@ -20,6 +20,7 @@ export const Button = (
     align-items: center;
     border: 0;
     padding: 0;
+    color: ${theme.secondaryColor};
     background-color: transparent;
     &:focus {
       border: 0;
@@ -37,12 +38,14 @@ export const Button = (
         color: ${theme.activeColor};
       }
     }
+
     .icon {
       width: 100%;
       height: 100%;
-      fill: ${theme.activeColor};
+      stroke: ${theme.activeColor} !important;
     }
   `;
+
   return (
     <StyledButton className="button" {...otherProps}>
       {text && (

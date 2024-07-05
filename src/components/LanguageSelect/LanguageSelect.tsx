@@ -25,7 +25,7 @@ export const LanguageSelect = ({
     }
   `;
   return (
-    <div className="language-select-main">
+    <StyledDiv className="language-select-main">
       <StyledDiv
         className={classNames("text", currentLanguage === "EN" ? "styled" : "")}
         onClick={handleClick("EN")}
@@ -39,6 +39,6 @@ export const LanguageSelect = ({
       >
         UA
       </StyledDiv>
-    </div>
+    </StyledDiv>
   );
 };

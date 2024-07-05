@@ -27,8 +27,8 @@ export type themeType = {
   caretColor: string;
   correctCharacter: string;
   incorrectCharacter: string;
-  secondaryColor: string;
   headerColor: string;
+  secondaryColor: string;
 };
 
 export type modesSpecificSettingsContextType = {
