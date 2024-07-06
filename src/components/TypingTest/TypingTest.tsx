@@ -68,6 +68,7 @@ export const TypingTest = () => {
                 currentLanguage={currentLanguage}
                 setCurrentLanguage={setCurrentLanguage}
               />
+              <ThemeSwitcher />
               <div key={idForRemount}>
                 <TypingField
                   hasStarted={countDownStart}
@@ -80,7 +81,6 @@ export const TypingTest = () => {
                 />
               </div>
               <Menu onReset={setCountDownStart} />
-              <ThemeSwitcher />
             </section>
           </IdContextForRemount.Provider>
         </ModesContext.Provider>

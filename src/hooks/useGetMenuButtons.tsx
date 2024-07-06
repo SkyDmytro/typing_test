@@ -4,10 +4,10 @@ import {
   ModesContext,
   ModesSpecificSettingsContext,
 } from "../components/TypingTest/TypingTest";
-import resetIcon from "../assets/reset-svgrepo-com.svg";
 import { menuButton } from "../types/menuTypes";
 import { modesType } from "../types/contextTypes";
 import { useResults } from "./useResult";
+import { useGetRightSvgForCurrentTheme } from "./useGetRightSvgForCurrentTheme";
 
 export const useGetMenuButtons = (
   onReset: (_: boolean) => void
@@ -19,6 +19,7 @@ export const useGetMenuButtons = (
   const { words, time } = modesSpecificSettings;
   const { setIdForRemount } = useContext(IdContextForRemount);
   const { reset } = useResults();
+  const icon = useGetRightSvgForCurrentTheme();
 
   const handleTimeClick = (time: number) => () => {
     setModesSpecificSettings((prevState) => ({ ...prevState, time }));
@@ -64,7 +65,7 @@ export const useGetMenuButtons = (
         {
           text: "",
           tooltipText: "Restart the game",
-          icon: resetIcon,
+          icon: icon,
           isActive: true,
           onClick: handleReset,
         },
@@ -121,7 +122,7 @@ export const useGetMenuButtons = (
         {
           text: "",
           tooltipText: "Restart the game",
-          icon: resetIcon,
+          icon: icon,
           isActive: true,
           onClick: handleReset,
         },

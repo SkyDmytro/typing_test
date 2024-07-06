@@ -1,32 +1,27 @@
-# React + TypeScript + Vite
+# Typing Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![alt text](image.png)
 
-Currently, two official plugins are available:
+This project inspired by MonkeyType
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Educational project
 
-## Expanding the ESLint configuration
+The app was created in react and typescript.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Current Features:
 
-- Configure the top-level `parserOptions` property like this:
+Typing Test
+words mode
+time mode
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+English : Top 1000 most frequent used English words
+Ukrainian: Top 1000 most frequent used Ukrainian words
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Support four tests duration 15s, 30s, 45s, 60s
 
-# typing_test
+Stats:
+
+- WPM
+- Time
+- Accuracy
+- Correct and Incorrect characters

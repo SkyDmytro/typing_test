@@ -9,24 +9,35 @@ export const ThemeSwitcher = () => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [isOpened, setIsOpened] = useState(false);
   const StyledThemeSwitcher = styled.div`
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
     color: ${theme.baseColor};
     position: relative;
     z-index: 9999;
     .drop-down-list {
-      height: 60vh;
+      font-size: 16px;
+      height: fit-content;
       background-color: ${theme.backgroundColor};
       border: 1px solid ${theme.secondaryColor};
       display: none;
-      width: 40vw;
+      width: 20vw;
       position: absolute;
-      top: -60vh;
-      left: 30vw;
+      top: 40px;
+      left: calc(40vw);
       text-align: center;
       .theme {
+        width: calc(100% - 20px);
+        padding: 10px;
         display: flex;
-        height: 50px;
+        height: 25px;
         gap: 5px;
         align-items: center;
+        justify-content: center;
+        &:hover {
+          background-color: ${theme.activeColor};
+          color: ${theme.baseColor};
+        }
         .circle {
           height: 13px;
           width: 13px;
@@ -47,6 +58,7 @@ export const ThemeSwitcher = () => {
   };
   const handleChangeTheme = (theme: themeType) => () => {
     setTheme(theme);
+    setIsOpened(false);
   };
   return (
     <StyledThemeSwitcher className="themes-container">
