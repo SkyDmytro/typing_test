@@ -22,4 +22,4 @@ Stats:
 WPM
 Time
 Accuracy
-Correct and Incorrect characters# Typing Test
+Correct and Incorrect characters
