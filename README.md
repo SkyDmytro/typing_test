@@ -7,6 +7,8 @@ This project inspired by MonkeyType
 Educational project
 
 The app was created in react and typescript.
-#Current Features:
+
+# Current Features:
+
 Typing Test
 words mode
