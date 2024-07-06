@@ -22,7 +22,7 @@ const themesArray: themesArrayType = [
       baseColor: "lightblue",
       headerColor: "teal",
       activeColor: "teal",
-      backgroundColor: "#e0e0e0",
+      backgroundColor: "#e0f2f5",
       caretColor: "teal",
       correctCharacter: "black",
       secondaryColor: "black",
@@ -74,7 +74,7 @@ const themesArray: themesArrayType = [
       baseColor: "lavender",
       headerColor: "skyblue",
       activeColor: "skyblue",
-      backgroundColor: "#ffffff",
+      backgroundColor: "#a9bec2", // Light gray
       caretColor: "skyblue",
       correctCharacter: "black",
       secondaryColor: "black",
