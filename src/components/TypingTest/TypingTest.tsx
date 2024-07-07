@@ -77,6 +77,7 @@ export const TypingTest = () => {
                 />
                 <Stats
                   start={countDownStart}
+                  onFinish={setCountDownStart}
                   time={modesSpecificSettings.time}
                 />
               </div>
