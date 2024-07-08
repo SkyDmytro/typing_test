@@ -1,6 +1,7 @@
 import ukrainianWordsJSON from "../assets/words_data/ua.json";
 import { currentLanguage } from "../components/TypingTest/TypingTest";
 import englishWordsJSON from "../assets/words_data/en.json";
+import { wordsType } from "../types/wordsType";
 
 type Item = {
   val: string;
@@ -31,7 +32,7 @@ type wordsTypeDictionary = {
 export const useGetRandomWords = (
   currentLanguage: currentLanguage,
   numberOfWords: number
-) => {
+): wordsType => {
   let result = "";
   const currentWords =
     currentLanguage === "EN" ? englishWordsJSON : ukrainianWordsJSON;
