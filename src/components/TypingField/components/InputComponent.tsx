@@ -1,6 +1,7 @@
 import React from "react";
 import { getStyledWords } from "../../../utils/functions";
 import { useRef, useState } from "react";
+import { wordsType } from "../../../types/wordsType";
 
 export const useGetInputElement = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -27,7 +28,7 @@ type Props = {
   inputText: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   isDisabled: boolean;
-  words: string;
+  words: wordsType;
 };
 
 export const InputComponent: React.FC<Props> = ({
