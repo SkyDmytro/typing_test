@@ -16,10 +16,11 @@ import InputComponent from "./components/InputComponent";
 import { useCountDownForWordsMode } from "../../hooks/useCountDownForWordsMode";
 import styled from "styled-components";
 import { ThemeContext } from "../../pages/MainPage/MainPage";
+import { wordsType } from "../../types/wordsType";
 
 interface TypingFieldProps {
   onStart: (_: boolean) => void;
-  words: string;
+  words: wordsType;
   hasStarted: boolean;
 }
 

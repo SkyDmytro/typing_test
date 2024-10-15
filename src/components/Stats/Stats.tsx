@@ -9,9 +9,10 @@ import styled from "styled-components";
 interface StatsProps {
   time: number;
   start: boolean;
+  onFinish: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Stats = ({ time, start }: StatsProps) => {
+export const Stats = ({ time, start, onFinish }: StatsProps) => {
   const { results } = useContext(ResultsContext);
   const { mode } = useContext(ModesContext);
   const { theme } = useContext(ThemeContext);
@@ -20,7 +21,9 @@ export const Stats = ({ time, start }: StatsProps) => {
   `;
   return (
     <StyledContainer className="stats-container">
-      {mode === "time" && <CountDown start={start} time={time} />}
+      {mode === "time" && (
+        <CountDown start={start} time={time} onFinish={onFinish} />
+      )}
       {results.isFinished && <StatsBlock results={results} />}
     </StyledContainer>
   );

@@ -4,9 +4,11 @@ import { useResults } from "./useResult";
 export const useReverseCountDown = ({
   start,
   time,
+  onFinish,
 }: {
   time: number;
   start: boolean;
+  onFinish: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [timer, setTimer] = useState(time);
   const { finish } = useResults();
@@ -33,6 +35,7 @@ export const useReverseCountDown = ({
   useEffect(() => {
     if (timer === 0) {
       finish();
+      onFinish(false);
     }
   }, [timer, finish]);
 
