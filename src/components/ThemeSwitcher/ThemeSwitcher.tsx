@@ -63,7 +63,7 @@ export const ThemeSwitcher = () => {
   return (
     <StyledThemeSwitcher className="themes-container">
       <div className="drop-down" onClick={handleClick}>
-        Themes
+        Themes {isOpened ? "▲" : "▼"}
       </div>
       <div className={classNames("drop-down-list", isOpened && "opened")}>
         {themesArray.map(({ name, theme }) => {
