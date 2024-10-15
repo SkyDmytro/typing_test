@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useContext } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import { currentLanguage } from "../TypingTest/TypingTest";
 import classNames from "classnames";
 import "./languageSelect.style.scss";

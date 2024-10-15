@@ -10,28 +10,31 @@ export const useReverseCountDown = ({
 }) => {
   const [timer, setTimer] = useState(time);
   const { finish } = useResults();
+
   useEffect(() => {
     let timerID: number;
 
     if (start && timer > 0) {
-      timerID = setInterval(() => tick(), 1000);
+      timerID = window.setInterval(
+        () => setTimer((prevTimer) => prevTimer - 1),
+        1000
+      );
     }
 
     return function cleanup() {
-      clearInterval(timerID);
+      window.clearInterval(timerID);
     };
   }, [start, timer]);
 
   useEffect(() => {
     setTimer(time);
   }, [time]);
-  console.log(timer);
-  const tick = () => {
-    if (timer === 1) {
+
+  useEffect(() => {
+    if (timer === 0) {
       finish();
     }
-    setTimer((prevTimer) => prevTimer - 1);
-  };
+  }, [timer, finish]);
 
   return { timer };
 };

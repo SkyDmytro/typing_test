@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import "./styles/tooltip.style.scss";
 import styled from "styled-components";
 import { ThemeContext } from "../../../pages/MainPage/MainPage";

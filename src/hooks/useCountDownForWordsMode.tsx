@@ -10,23 +10,27 @@ export const useCountDownForWordsMode = ({
 }) => {
   const [timer, setTimer] = useState(0);
   const { finish } = useResults();
+
   useEffect(() => {
     let timerID: number;
 
     if (start && !isFinished) {
-      timerID = setInterval(() => tick(), 1000);
+      timerID = window.setInterval(
+        () => setTimer((prevTimer) => prevTimer + 1),
+        1000
+      );
     }
 
-    return function cleanup() {
-      clearInterval(timerID);
+    return () => {
+      window.clearInterval(timerID);
     };
-  }, [start, timer]);
+  }, [start, isFinished]);
 
-  useEffect(() => {});
-
-  const tick = () => {
-    setTimer((prevTimer) => prevTimer + 1);
-  };
+  useEffect(() => {
+    if (isFinished) {
+      finish();
+    }
+  }, [isFinished, finish]);
 
   return { timer };
 };
