@@ -29,7 +29,6 @@ describe("functions  module", () => {
   test("Words per minute test", () => {
     const result = getWordsPerMinute(100, 60);
     const result2 = getWordsPerMinute(100, 30);
-    console.log(result);
     expect(result).toBe(100);
     expect(result2).toBe(200);
   });

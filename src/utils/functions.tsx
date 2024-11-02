@@ -6,7 +6,6 @@ const getAmountOfWords = (text: string): number => {
 };
 
 const getWordsPerMinute = (words: number, time: number): number => {
-  console.log("time:", time);
   return Math.floor((words / time) * 60);
 };
 

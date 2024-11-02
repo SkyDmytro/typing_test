@@ -12,7 +12,6 @@ describe("sum module", () => {
 describe("sum module", () => {
   test("random words generation english 100", () => {
     const result = useGetRandomWords("EN", 100);
-    console.log(result);
     expect(result.split(" ").length).toBe(100);
   });
 });
