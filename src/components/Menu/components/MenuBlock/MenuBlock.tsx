@@ -4,7 +4,6 @@ import { Button } from "../Button";
 import { Tooltip } from "../../../Stats/components/Tooltip";
 import classNames from "classnames";
 import { useTooltip } from "../../../../hooks/useTooltip";
-import styled from "styled-components";
 import { useContext } from "react";
 import { ThemeContext } from "../../../../pages/MainPage/MainPage";
 
@@ -15,11 +14,9 @@ interface menuBlockProps {
 export const MenuBlock = ({ menuButtons }: menuBlockProps) => {
   const { showTooltip, hideTooltip } = useTooltip();
   const { theme } = useContext(ThemeContext);
-  const StyledMenu = styled.div`
-    color: ${theme.baseColor};
-  `;
+
   return (
-    <StyledMenu className="menu-main">
+    <div className="menu-main" style={{ color: theme.baseColor }}>
       <div className="buttons">
         {menuButtons.map((button, index) => {
           return (
@@ -43,6 +40,6 @@ export const MenuBlock = ({ menuButtons }: menuBlockProps) => {
           );
         })}
       </div>
-    </StyledMenu>
+    </div>
   );
 };

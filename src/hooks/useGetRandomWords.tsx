@@ -47,7 +47,6 @@ export const useGetRandomWords = (
     wordCount++;
   }
 
-  console.log(result);
   return result;
 };
 export const getRandomWord = (words: wordsTypeDictionary) => {

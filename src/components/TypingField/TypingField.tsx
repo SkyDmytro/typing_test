@@ -14,9 +14,30 @@ import { useInput } from "../../hooks/useInput";
 import { useResults } from "../../hooks/useResult";
 import InputComponent from "./components/InputComponent";
 import { useCountDownForWordsMode } from "../../hooks/useCountDownForWordsMode";
-import styled from "styled-components";
 import { ThemeContext } from "../../pages/MainPage/MainPage";
 import { wordsType } from "../../types/wordsType";
+import styled from "styled-components";
+import { themeType } from "../../types/contextTypes";
+
+const StyledField = styled.div<{ theme: themeType }>`
+  .words-container {
+    color: ${({ theme }) => theme.baseColor};
+    span {
+      &.caret-right {
+        border-right: 1px solid ${({ theme }) => theme.caretColor};
+      }
+      &.correct {
+        color: ${({ theme }) => theme.correctCharacter};
+      }
+      &.incorrect {
+        color: ${({ theme }) => theme.incorrectCharacter};
+      }
+    }
+  }
+  .not-in-focus {
+    color: ${({ theme }) => theme.baseColor};
+  }
+`;
 
 interface TypingFieldProps {
   onStart: (_: boolean) => void;
@@ -44,28 +65,6 @@ export const TypingField = ({
     isFinished: results.isFinished,
   });
   const { theme } = useContext(ThemeContext);
-
-  const StyledField = styled.div`
-    .words-container {
-      color: ${theme.baseColor};
-      span {
-        &.caret-right {
-          border-right: 1px solid ${theme.caretColor};
-        }
-        &.correct {
-          color: ${theme.correctCharacter};
-        }
-        &.incorrect {
-          color: ${theme.incorrectCharacter};
-        }
-      }
-    }
-    .not-in-focus {
-      color: ${theme.baseColor};
-    }
-  `;
-
-  console.log(timer);
 
   useEffect(() => {
     if (results.isFinished) {
@@ -114,7 +113,7 @@ export const TypingField = ({
 
   return (
     <>
-      <StyledField className="field">
+      <StyledField className="field" theme={theme}>
         {InputComponent({
           words: words,
           inputText: inputText,

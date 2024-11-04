@@ -5,6 +5,38 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { ThemeContext } from "../../../pages/MainPage/MainPage";
 
+const StyledButton = styled.button`
+  height: 20px;
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  color: ${(props) => props.theme.secondaryColor};
+  background-color: transparent;
+  &:focus {
+    border: 0;
+    transition: none;
+    outline: none;
+  }
+  &:hover {
+    .text {
+      transform: scale(1.2);
+      color: ${(props) => props.theme.activeColor};
+    }
+  }
+  .text {
+    &.active {
+      color: ${(props) => props.theme.activeColor};
+    }
+  }
+
+  .icon {
+    width: 100%;
+    height: 100%;
+    stroke: ${(props) => props.theme.activeColor} !important;
+  }
+`;
+
 export const Button = (
   props: menuButton &
     React.DetailedHTMLProps<
@@ -14,40 +46,9 @@ export const Button = (
 ) => {
   const { icon, text, isActive, ...otherProps } = props;
   const { theme } = useContext(ThemeContext);
-  const StyledButton = styled.button`
-    height: 20px;
-    display: flex;
-    align-items: center;
-    border: 0;
-    padding: 0;
-    color: ${theme.secondaryColor};
-    background-color: transparent;
-    &:focus {
-      border: 0;
-      transition: none;
-      outline: none;
-    }
-    &:hover {
-      .text {
-        transform: scale(1.2);
-        color: ${theme.activeColor};
-      }
-    }
-    .text {
-      &.active {
-        color: ${theme.activeColor};
-      }
-    }
-
-    .icon {
-      width: 100%;
-      height: 100%;
-      stroke: ${theme.activeColor} !important;
-    }
-  `;
 
   return (
-    <StyledButton className="button" {...otherProps}>
+    <StyledButton className="button" {...otherProps} theme={theme}>
       {text && (
         <div className={classNames("text", isActive && "active")}>{text}</div>
       )}

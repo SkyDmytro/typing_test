@@ -10,25 +10,28 @@ type LanguageSelectProps = {
   setCurrentLanguage: Dispatch<SetStateAction<currentLanguage>>;
 };
 
+const StyledDiv = styled.div<{ isStyled: boolean }>`
+  color: ${({ isStyled, theme }) =>
+    isStyled ? theme.activeColor : theme.baseColor};
+`;
+
 export const LanguageSelect = ({
   currentLanguage,
   setCurrentLanguage,
 }: LanguageSelectProps) => {
   const { theme } = useContext(ThemeContext);
+
   const handleClick = (selectedLanguage: currentLanguage) => () => {
     setCurrentLanguage(selectedLanguage);
   };
-  const StyledDiv = styled.div`
-    color: ${theme.baseColor};
-    &.styled {
-      color: ${theme.activeColor};
-    }
-  `;
+
   return (
-    <StyledDiv className="language-select-main">
+    <StyledDiv className="language-select-main" theme={theme} isStyled={false}>
       <StyledDiv
         className={classNames("text", currentLanguage === "EN" ? "styled" : "")}
         onClick={handleClick("EN")}
+        theme={theme}
+        isStyled={currentLanguage === "EN"}
       >
         EN
       </StyledDiv>
@@ -36,6 +39,8 @@ export const LanguageSelect = ({
       <StyledDiv
         onClick={handleClick("UA")}
         className={classNames("text", currentLanguage === "UA" ? "styled" : "")}
+        theme={theme}
+        isStyled={currentLanguage === "UA"}
       >
         UA
       </StyledDiv>
