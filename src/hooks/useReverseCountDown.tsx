@@ -25,7 +25,6 @@ export const useReverseCountDown = ({
   useEffect(() => {
     setTimer(time);
   }, [time]);
-  console.log(timer);
   const tick = () => {
     if (timer === 1) {
       finish();

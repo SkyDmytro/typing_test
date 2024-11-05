@@ -8,7 +8,6 @@ export const CountDown = ({
   start: boolean;
 }) => {
   const { timer } = useReverseCountDown({ time, start });
-  console.log("timer", timer);
 
   return (
     <div className="wrapper">

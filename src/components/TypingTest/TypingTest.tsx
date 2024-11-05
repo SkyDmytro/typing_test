@@ -31,20 +31,15 @@ export const ModesSpecificSettingsContext = createContext(
 );
 
 export const TypingTest = () => {
-  console.log("Typing test render");
   const [currentLanguage, setCurrentLanguage] = useState<currentLanguage>("EN");
-  console.log("currentLanguage changed", currentLanguage);
 
   const [countDownStart, setCountDownStart] = useState(false);
-  console.log("countDownStart changed", countDownStart);
 
   const onStart = useCallback((value: boolean) => setCountDownStart(value), []);
 
   const [idForRemount, setIdForRemount] = useState(2);
-  console.log("idForRemount changed", idForRemount);
 
   const [currentMode, setCurrentMode] = useState<modesType>("time");
-  console.log("currentMode changed", currentMode);
 
   const [modesSpecificSettings, setModesSpecificSettings] =
     useState<modesSpecificSettingsType>({
@@ -52,7 +47,6 @@ export const TypingTest = () => {
       time: 30,
       defaultValues: { words: 50, time: 30 },
     });
-  console.log("modesSpecificSettings changed", modesSpecificSettings);
 
   const [results, setResults] = useState({
     correctChars: 0,
@@ -60,17 +54,13 @@ export const TypingTest = () => {
     wordsTyped: 0,
     isFinished: false,
   });
-  console.log("results changed", results);
 
   const words = useGetRandomWords(currentLanguage, modesSpecificSettings.words);
 
   const memoizedWords = useMemo(() => {
     return words;
   }, [idForRemount, currentLanguage, modesSpecificSettings.words]);
-  console.log("memowords changed", memoizedWords);
-  useEffect(() => {
-    console.log("useEffect", countDownStart);
-  }, [countDownStart]);
+  useEffect(() => {}, [countDownStart]);
 
   return (
     <ResultsContext.Provider value={{ results, setResults }}>

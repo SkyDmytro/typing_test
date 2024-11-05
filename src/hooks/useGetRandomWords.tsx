@@ -26,7 +26,6 @@ type wordsTypeDictionary = {
 //     }
 //   }
 
-//   console.log(result);
 //   return result;
 // };
 export const useGetRandomWords = (
