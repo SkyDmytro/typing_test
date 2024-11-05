@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useResults } from "./useResult";
 
 export const useCountDownForWordsMode = ({
   start,
@@ -9,28 +8,22 @@ export const useCountDownForWordsMode = ({
   isFinished: boolean;
 }) => {
   const [timer, setTimer] = useState(0);
-  const { finish } = useResults();
-
   useEffect(() => {
-    let timerID: number;
+    let timerID: NodeJS.Timeout;
 
     if (start && !isFinished) {
-      timerID = window.setInterval(
-        () => setTimer((prevTimer) => prevTimer + 1),
-        1000
-      );
+      timerID = setInterval(() => tick(), 1000);
     }
 
-    return () => {
-      window.clearInterval(timerID);
+    return function cleanup() {
+      clearInterval(timerID);
     };
-  }, [start, isFinished]);
+  }, [start, timer]);
+  useEffect(() => {});
 
-  useEffect(() => {
-    if (isFinished) {
-      finish();
-    }
-  }, [isFinished, finish]);
+  const tick = () => {
+    setTimer((prevTimer) => prevTimer + 1);
+  };
 
   return { timer };
 };

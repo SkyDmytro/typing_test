@@ -4,40 +4,34 @@ import { useResults } from "./useResult";
 export const useReverseCountDown = ({
   start,
   time,
-  onFinish,
 }: {
   time: number;
   start: boolean;
-  onFinish: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [timer, setTimer] = useState(time);
   const { finish } = useResults();
-
   useEffect(() => {
-    let timerID: number;
+    let timerID: NodeJS.Timeout;
 
     if (start && timer > 0) {
-      timerID = window.setInterval(
-        () => setTimer((prevTimer) => prevTimer - 1),
-        1000
-      );
+      timerID = setInterval(() => tick(), 1000);
     }
 
     return function cleanup() {
-      window.clearInterval(timerID);
+      clearInterval(timerID);
     };
   }, [start, timer]);
 
   useEffect(() => {
     setTimer(time);
   }, [time]);
-
-  useEffect(() => {
-    if (timer === 0) {
+  console.log(timer);
+  const tick = () => {
+    if (timer === 1) {
       finish();
-      onFinish(false);
     }
-  }, [timer, finish]);
+    setTimer((prevTimer) => prevTimer - 1);
+  };
 
   return { timer };
 };

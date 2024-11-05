@@ -3,13 +3,12 @@ import { useReverseCountDown } from "../../../hooks/useReverseCountDown";
 export const CountDown = ({
   time,
   start,
-  onFinish,
 }: {
   time: number;
   start: boolean;
-  onFinish: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const { timer } = useReverseCountDown({ time, start, onFinish });
+  const { timer } = useReverseCountDown({ time, start });
+  console.log("timer", timer);
 
   return (
     <div className="wrapper">
